@@ -24,16 +24,6 @@ The app uses a rate-limited demo API key, which will be replaced from time to ti
 Get your own API key [here](https://content.meteoblue.com/en/access-options/meteoblue-weather-api)
 and set `apiKey` in `map.html`.
 
-## Variants
-
-|         | MapLibre                            | WebView + Maps Plugin              |
-| ------- | ----------------------------------- | ---------------------------------- |
-| Android | `maps-api-android-maplibre-example` | `maps-api-android-webview-example` |
-| iOS     | `maps-api-ios-maplibre-example`     | `maps-api-ios-webview-example`     |
-
 ## Documentation
 
 - [Maps API overview](https://docs.meteoblue.com/en/weather-apis/maps-api/overview)
-- [Maps Plugin](https://docs.meteoblue.com/en/weather-apis/maps-api/maps-plugin)
-- [Inventory API](https://maps-api.meteoblue.com/v1/map/inventory/redoc)
-- [Web examples (Mapbox GL JS, Leaflet)](https://docs.meteoblue.com/en/weather-apis/maps-api/examples)
