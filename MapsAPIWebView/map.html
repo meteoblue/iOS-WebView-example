@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>meteoblue Maps Plugin</title>
+
+    <!-- Load the Mapbox GL JS mapping library from meteoblue servers -->
+    <script
+      src="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.js"
+      integrity="sha512-v5PfWsWi47/AZBVL7WMNqdbM1OMggp9Ce408yX/X9wg87Kjzb1xqpO2Ul0Oue8Vl9kKOcwPM2MWWkTbUjRxZOg=="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://static.meteoblue.com/cdn/mapbox-gl-js/v1.11.1/mapbox-gl.css"
+      integrity="sha512-xY1TAM00L9X8Su9zNuJ8nBZsGQ8IklX703iq4gWnsw6xCg+McrHXEwbBkNaWFHSqmf6e7BpxD6aJQLKAcsGSdA=="
+      crossorigin="anonymous"
+    />
+
+    <!-- Load the meteoblue Maps Plugin -->
+    <script src="https://static.meteoblue.com/lib/maps-plugin/v0.x/maps-plugin.js"></script>
+
+    <style>
+      #mapContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="mapContainer"></div>
+
+    <script>
+      // Rate-limited demo API key. Will be replaced from time to time. Do not use.
+      // Get an API key here: https://content.meteoblue.com/en/access-options/meteoblue-weather-api
+      const apiKey = "be72f76237db";
+      const lang = "en";
+
+      // Maps shown in the menu. The first one is shown initially.
+      // For all available maps, see https://maps-api.meteoblue.com/v1/map/inventory/redoc
+      const maps = "temperature,windAnimation,cloudsAndPrecipitation,radar,satellite";
+
+      // Initialize the Mapbox GL JS map inside the mapContainer element.
+      // Do not set the style parameter. It will be overwritten by the meteoblue Maps Plugin.
+      const mapboxMap = new mapboxgl.Map({
+        container: "mapContainer",
+        center: [7, 47],
+        zoom: 4,
+        attributionControl: false,
+        keyboard: false,
+      });
+
+      // The URL to the Inventory JSON. In this case the meteoblue API will generate one with the specified maps.
+      const inventoryUrl = `https://maps-api.meteoblue.com/v1/map/inventory/filter?lang=${lang}&maps=${maps}&apikey=${apiKey}`;
+
+      // Initialize the meteoblue Maps Plugin. It will generate a user interface on top of the
+      // Mapbox GL JS map according to the Inventory JSON.
+      // All options: https://docs.meteoblue.com/en/weather-apis/maps-api/maps-plugin
+      new meteoblueMapsPlugin({
+        mapboxMap: mapboxMap,
+        inventory: inventoryUrl,
+        apiKey: apiKey,
+      });
+    </script>
+  </body>
+</html>
